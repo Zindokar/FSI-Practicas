@@ -96,7 +96,7 @@ class Node:
 def tree_search(problem, fringe):
     """Search through the successors of a problem to find a goal.
     The argument fringe should be an empty queue.
-    Don't worry about repeFIFOQueueated paths to a state. [Fig. 3.8]"""
+    Don't worry about repeated paths to a state. [Fig. 3.8]"""
     fringe.append(Node(problem.initial))
     while fringe:
         node = fringe.pop()
@@ -131,6 +131,9 @@ def graph_search(problem, fringe):
             fringe.extend(node.expand(problem))
     return None
 
+def branch_and_bound_graph_search(problem):
+    """Search the cheapest movement from current node to the next node."""
+    return graph_search(problem, SortedListByCost())  # SortedListByCost -> fringe
 
 def breadth_first_graph_search(problem):
     """Search the shallowest nodes in the search tree first. [p 74]"""

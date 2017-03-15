@@ -760,6 +760,34 @@ class FIFOQueue(Queue):
             self.start = 0
         return e
 
+class SortedListByCost(Queue):
+    """Sorted list by path cost of the element."""
+
+    def __init__(self):
+        self.A = []
+        self.start = 0
+
+    def append(self, item):
+        self.A.append(item)
+        self.sortByPathCost()
+
+    def __len__(self):
+        return len(self.A) - self.start
+
+    def extend(self, items):
+        self.A.extend(items)
+        self.sortByPathCost()
+
+    def sortByPathCost(self):
+        self.A.sort(key=lambda element: element.path_cost)
+
+    def pop(self):
+        e = self.A[self.start]
+        self.start += 1
+        if self.start > 5 and self.start > len(self.A) / 2:
+            self.A = self.A[self.start:]
+            self.start = 0
+        return e
 
 class PriorityQueue(Queue):
     """A queue in which the minimum (or maximum) element (as determined by f and

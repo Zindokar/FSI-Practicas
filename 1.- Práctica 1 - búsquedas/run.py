@@ -9,6 +9,7 @@ print search.breadth_first_graph_search(ab).path()
 print search.depth_first_graph_search(ab).path()
 print search.iterative_deepening_search(ab).path()
 print search.depth_limited_search(ab).path()
+print search.branch_and_bound_graph_search(ab).path()
 
 #print search.astar_search(ab).path()
 
