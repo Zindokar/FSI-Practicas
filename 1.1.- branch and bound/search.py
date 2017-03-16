@@ -120,23 +120,21 @@ def graph_search(problem, fringe):
     """Search through the successors of a problem to find a goal.
     The argument fringe should be an empty queue.
     If two paths reach a state, only use the best one. [Fig. 3.18]"""
-
-    # closed list ignored in branch and bound method
-
-    # closed = {}
+    closed = {}
     fringe.append(Node(problem.initial))
     while fringe:
         node = fringe.pop()
         if problem.goal_test(node.state):
             return node
-        # if node.state not in closed:
-            # closed[node.state] = True
-        fringe.extend(node.expand(problem))
+        if node.state not in closed:
+            closed[node.state] = True
+            fringe.extend(node.expand(problem))
     return None
 
 def branch_and_bound_graph_search(problem):
     """Search the cheapest movement from current node to the next node."""
     return graph_search(problem, SortedListByCost())  # SortedListByCost -> fringe
+
 
 def breadth_first_graph_search(problem):
     """Search the shallowest nodes in the search tree first. [p 74]"""
