@@ -120,15 +120,18 @@ def graph_search(problem, fringe):
     """Search through the successors of a problem to find a goal.
     The argument fringe should be an empty queue.
     If two paths reach a state, only use the best one. [Fig. 3.18]"""
-    closed = {}
+
+    # closed list ignored in branch and bound method
+
+    # closed = {}
     fringe.append(Node(problem.initial))
     while fringe:
         node = fringe.pop()
         if problem.goal_test(node.state):
             return node
-        if node.state not in closed:
+        # if node.state not in closed:
             # closed[node.state] = True
-            fringe.extend(node.expand(problem))
+        fringe.extend(node.expand(problem))
     return None
 
 def branch_and_bound_graph_search(problem):
