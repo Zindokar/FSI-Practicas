@@ -68,7 +68,7 @@ def getEGreedyAction(state, ratio):
 
 
 def getGreedyAction(state):
-    y, x = getStateCoord(state)
+    x, y = getStateCoord(state)
     position = getState(x, y)
     maxRewardMovement = np.argmax(Q[position])
     if maxRewardMovement > 0:
