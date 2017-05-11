@@ -62,7 +62,7 @@ def getRndAction(state):
 
 def getEGreedyAction(state, ratio):
     if random.randint(0, 1) <= ratio:
-        return random.choice(getActions(state))
+        return getRndAction(state)
     else:
         return getGreedyAction(state)
 

@@ -115,7 +115,19 @@ while diferencia > 0.001:
     print "----------------------------------------------------------------------------------"
 
 # Errores de validacion 15%
-print "Test Error: ", sess.run(loss, feed_dict={x: x_data_test, y_: y_data_test})
+print "----------------------"
+print "   Test result...     "
+print "----------------------"
+
+total = 0.0
+error = 0.0
+test_data = sess.run(y, feed_dict={x: x_data_test})
+for b, r in zip(y_data_test, test_data):
+    if np.argmax(b) != np.argmax(r):
+        error += 1
+    total += 1
+fail = error / total * 100.0
+print "Porcentaje de error: ", fail,"% y portenjate de exito", (100.0 - fail), "%"
 
 plot.ylabel('Errores')
 plot.xlabel('Epocas')
