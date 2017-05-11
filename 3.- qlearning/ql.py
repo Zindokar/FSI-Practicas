@@ -61,7 +61,7 @@ def getRndAction(state):
 
 
 def getEGreedyAction(state, ratio):
-    if random.randint(0, 1) > ratio:
+    if random.randint(0, 1) <= ratio:
         return random.choice(getActions(state))
     else:
         return getGreedyAction(state)
@@ -94,7 +94,7 @@ Rewards[9 * width + 1] = -10000
 Rewards[3 * width + 3] = 100
 final_state = getState(3, 3)
 
-print np.reshape(Rewards, (height, width))
+print(np.reshape(Rewards, (height, width)))
 
 
 def qlearning(s1, a, s2):
@@ -103,22 +103,23 @@ def qlearning(s1, a, s2):
 
 
 # Episodes
-actionNumber = 0
-ratio = 0.5
-for i in xrange(100):
-    state = getRndState()
-    while state != final_state:
-        # action = getRndAction(state)
-        # action = getGreedyAction(state)
-        action = getEGreedyAction(state, ratio)
-        y = getStateCoord(state)[0] + actions_vectors[action][0]
-        x = getStateCoord(state)[1] + actions_vectors[action][1]
-        new_state = getState(y, x)
-        qlearning(state, actions_list[action], new_state)
-        state = new_state
-        actionNumber += 1
-print "Numero de acciones ", actionNumber / 100
-print Q
+ratio = 0.8
+for j in range(10):
+    actionNumber = 0
+    for i in range(100):
+        state = getRndState()
+        while state != final_state:
+            # action = getRndAction(state)
+            action = getGreedyAction(state)
+            # action = getEGreedyAction(state, ratio)
+            y = getStateCoord(state)[0] + actions_vectors[action][0]
+            x = getStateCoord(state)[1] + actions_vectors[action][1]
+            new_state = getState(y, x)
+            qlearning(state, actions_list[action], new_state)
+            state = new_state
+            actionNumber += 1
+    print("Número de acciones media", actionNumber / 100)
+print(Q)
 
 # Q matrix plot
 
@@ -126,10 +127,10 @@ s = 0
 ax = plt.axes()
 ax.axis([-1, width + 1, -1, height + 1])
 
-for j in xrange(height):
+for j in range(height):
 
     plt.plot([0, width], [j, j], 'b')
-    for i in xrange(width):
+    for i in range(width):
         plt.plot([i, i], [0, height], 'b')
 
         direction = np.argmax(Q[s])
