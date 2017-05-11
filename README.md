@@ -7,6 +7,7 @@ Fundamentos de sistemas inteligentes
 ## 1.2.- Búsqueda informada, ramificación y acotación con subestimación
 
 # 2.- Redes neuronales tipo perceptrón
+## Tensorflow - python 2
 
 # 3.- Aprendizaje por refuerzo (Q-Learning)
 ## Exploración, E-Greedy y Greedy
