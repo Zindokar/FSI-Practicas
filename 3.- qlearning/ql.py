@@ -61,8 +61,13 @@ def getRndAction(state):
 
 
 def getEGreedyAction(state, ratio):
+<<<<<<< HEAD
     if random.random() < ratio:
         return random.choice(getActions(state))
+=======
+    if random.randint(0, 1) <= ratio:
+        return getRndAction(state)
+>>>>>>> origin/master
     else:
         return getGreedyAction(state)
 
