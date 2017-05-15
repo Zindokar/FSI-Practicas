@@ -61,7 +61,7 @@ def getRndAction(state):
 
 
 def getEGreedyAction(state, ratio):
-    if random.randint(0, 1) <= ratio:
+    if random.random() < ratio:
         return random.choice(getActions(state))
     else:
         return getGreedyAction(state)
@@ -71,7 +71,8 @@ def getGreedyAction(state):
     x, y = getStateCoord(state)
     position = getState(x, y)
     maxRewardMovement = np.argmax(Q[position])
-    if maxRewardMovement > 0:
+    m = max(Q[state])
+    if m > 0:
         return action_list_traduction[maxRewardMovement]
     else:
         return random.choice(getActions(state))
@@ -110,8 +111,8 @@ for j in range(10):
         state = getRndState()
         while state != final_state:
             # action = getRndAction(state)
-            action = getGreedyAction(state)
-            # action = getEGreedyAction(state, ratio)
+            # action = getGreedyAction(state)
+            action = getEGreedyAction(state, ratio)
             y = getStateCoord(state)[0] + actions_vectors[action][0]
             x = getStateCoord(state)[1] + actions_vectors[action][1]
             new_state = getState(y, x)
