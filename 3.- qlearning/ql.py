@@ -61,13 +61,8 @@ def getRndAction(state):
 
 
 def getEGreedyAction(state, ratio):
-<<<<<<< HEAD
-    if random.random() < ratio:
-        return random.choice(getActions(state))
-=======
     if random.randint(0, 1) <= ratio:
         return getRndAction(state)
->>>>>>> origin/master
     else:
         return getGreedyAction(state)
 
@@ -102,11 +97,9 @@ final_state = getState(3, 3)
 
 print(np.reshape(Rewards, (height, width)))
 
-
 def qlearning(s1, a, s2):
     Q[s1][a] = Rewards[s2] + discount * max(Q[s2])
     return
-
 
 # Episodes
 ratio = 0.8
